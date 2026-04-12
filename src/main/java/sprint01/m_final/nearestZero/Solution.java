@@ -3,35 +3,33 @@ package sprint01.m_final.nearestZero;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+import java.util.StringTokenizer;
+//Ссылка на отчет: https://contest.yandex.ru/contest/22450/run-report/160297161/
 class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int count = Integer.parseInt(reader.readLine());
-        String str = reader.readLine();
+        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+        int[] strArray = new int[count];
+        for (int i = 0; i < count; i++) {
+            strArray[i] = Integer.parseInt(tokenizer.nextToken());
+        }
+        int[] rightArray = new int[count];
         StringBuilder sb = new StringBuilder();
-        int left = -1;
-        for (int right = 0; right < count * 2 - 1; right += 2) {
-
-            if (str.charAt(right) == 0 && left != -1) {
-                fillDistanceBetweenTwoZeroes(left / 2, right / 2);
+        int lastZero = Integer.MAX_VALUE;
+        for (int i = count - 1; i > -1; i--) {
+            if (strArray[i] == 0) {
+                lastZero = i;
             }
-            left = right;
+            rightArray[i] = lastZero - i;
         }
-    }
-
-
-public static String fillDistanceBetweenTwoZeroes(int left, int right) {
-    StringBuilder sb = new StringBuilder();
-    int size = right - left;
-    int halfSize = (size + 1) / 2;
-    for (int i = 1; i < size; i++) {
-        if (i < halfSize) {
-            sb.append(i).append(" ");
-        } else {
-            sb.append(size - i).append(" ");
+        lastZero = -2_000_001;
+        for (int i = 0; i < count; i++) {
+            if (strArray[i] == 0) {
+                lastZero = i;
+            }
+            sb.append(Math.min(rightArray[i], i - lastZero)).append(" ");
         }
+        System.out.println(sb);
     }
-    return sb.toString();
-}
 }
