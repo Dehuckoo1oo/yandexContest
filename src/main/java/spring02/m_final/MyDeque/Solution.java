@@ -48,7 +48,7 @@ import java.util.StringTokenizer;
 *                и перемещает указатель (headIdx) на последний пустой элемент headIdx + 1
 *                Если индекс выходит за пределы массива, для нахождения корректного индекса используется остаток от деления
 *                индекса (headIdx) на максимальный размер массива (maxN).
-* */
+*/
 
 public class Solution {
     public static void main(String[] args) throws IOException {
