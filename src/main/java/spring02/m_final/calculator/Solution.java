@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.StringTokenizer;
 import java.util.function.BiFunction;
+//отчет: https://contest.yandex.ru/contest/22781/run-report/160733401/
 /*
 * Создал мапу функций, что бы быстро находить нужную по оператору.
 * Стэк с операндами был описан в задании, просто сделал как описано, но, судя по тестам хватило бы и обычной переменной,

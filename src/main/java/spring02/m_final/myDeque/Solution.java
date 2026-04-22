@@ -1,10 +1,10 @@
-package spring02.m_final.MyDeque;
+package spring02.m_final.myDeque;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-
+//Отчет: https://contest.yandex.ru/contest/22781/run-report/160731778/
 /*
 * Создал двустороннюю очередь на зацикленном массиве:
 * Поля очереди:
