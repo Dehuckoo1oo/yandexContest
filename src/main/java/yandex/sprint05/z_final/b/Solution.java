@@ -46,10 +46,13 @@ public class Solution {
     public static Node remove(Node root, int key) {
         if(root == null) return null;
         Node newRoot = root;
-        if (root.getValue() == key) {
-            newRoot = findMidAndReplace(root, null);
-            
+        Node parent = null;
+        Node node;
+        if (newRoot.getValue() == key) {
+            node = newRoot;
+            parent = null;
         }
+        
 
         return null;
     }
