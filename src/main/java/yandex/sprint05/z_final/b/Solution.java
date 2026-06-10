@@ -1,6 +1,5 @@
 package yandex.sprint05.z_final.b;
 
-
 class Node {
     private int value;
     private Node left;
@@ -38,64 +37,51 @@ class Node {
 }
 
 public class Solution {
-    public static void main(String[] args) {
-
-    }
-
 
     public static Node remove(Node root, int key) {
-        if(root == null) return null;
-        Node newRoot = root;
         Node parent = null;
-        Node node;
-        if (newRoot.getValue() == key) {
-            node = newRoot;
-            parent = null;
-        }
-        
-
-        return null;
-    }
-
-    private static Node findMidAndReplace(Node node, Node parent) {
-        Node result;
-        if (node.getLeft() != null && node.getLeft().getRight() != null) {
-            result = node.getLeft().getRight();
-            while (result.getRight() != null) {
-                result = result.getRight();
-            }
-            return result;
-        }
-        if (node.getRight() != null && node.getRight().getLeft() != null) {
-            result = node.getRight().getLeft();
-            while (result.getLeft() != null) {
-                result = result.getLeft();
-            }
-            return result;
-        }
-        if (node.getLeft() != null) {
-            return node.getLeft();
-        }
-        if(node.getRight() != null) {
-            return node.getRight();
-        }
-        return null;
-    }
-
-    private static Node[] findNodeAndParentByKey(Node root, int key) {
         Node curNode = root;
-        Node parentNode = null;
         while (curNode != null && curNode.getValue() != key) {
-            parentNode = curNode;
-            if (curNode.getValue() < key) {
+            parent = curNode;
+            if (curNode.getValue() > key) {
                 curNode = curNode.getLeft();
             } else {
                 curNode = curNode.getRight();
             }
         }
-        return new Node[]{parentNode, curNode};
-    }
+        if (curNode == null) return root;
 
+        if (curNode.getLeft() != null && curNode.getRight() != null) {
+            Node successorParent = curNode;
+            Node successor = curNode.getRight();
+            while (successor.getLeft() != null) {
+                successorParent = successor;
+                successor = successor.getLeft();
+            }
+            curNode.setValue(successor.getValue());
+            Node successorChild = successor.getRight();
+
+            if(successorParent.getLeft() == successor){
+                successorParent.setLeft(successorChild);
+            } else {
+                successorParent.setRight(successorChild);
+            }
+            return root;
+        }
+        Node child = null;
+        if (curNode.getLeft() != null) {
+            child = curNode.getLeft();
+        } else {
+            child = curNode.getRight();
+        }
+        if (parent == null) return child;
+        if(parent.getLeft() == curNode) {
+            parent.setLeft(child);
+        } else {
+            parent.setRight(child);
+        }
+            return root;
+    }
 
 
     private static void test() {
