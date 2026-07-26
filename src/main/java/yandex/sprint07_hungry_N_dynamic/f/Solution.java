@@ -16,10 +16,9 @@ public class Solution {
         long[] dp = new long[n + 1];
         dp[1] = 1;
         for (int i = 2; i <= n; i++) {
-            long sum = 0;
             int j = Math.max(1, i - k);
             while (j < i) {
-                dp[i] = dp[i] + dp[j] % mod;
+                dp[i] = (dp[i] + dp[j]) % mod;
                 j++;
             }
         }
