@@ -14,7 +14,18 @@ public class Solution {
         pi[0] = 0;
         for (int i = 1; i < n; i++) {
             int k = pi[i - 1];
+            while (k > 0 && s.charAt(k) != s.charAt(i)) {
+                k = pi[k - 1];
+            }
+            if (s.charAt(k) == s.charAt(i)) {
+                k++;
+            }
+            pi[i] = k;
         }
-        
+        StringBuilder sb = new StringBuilder();
+        for (int k : pi) {
+            sb.append(k).append(" ");
+        }
+        System.out.println(sb);
     }
 }
